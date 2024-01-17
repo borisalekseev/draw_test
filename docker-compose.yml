@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  indigo:
+    image: "epmlsop/indigo-service:latest"
+    expose:
+      - 80
+  nginx:
+    build:
+      context: .
+      dockerfile: DOCKERFILE
+    ports:
+      - "8002:80"
+    depends_on:
+      - indigo
