@@ -1,25 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { RemoteStructServiceProvider, Ketcher } from 'ketcher-core'
+import { Editor } from 'ketcher-react';
+import { GraphContainer } from './container';
 
-function App() {
+const structServiceProvider = new RemoteStructServiceProvider(
+  "http://localhost:8002/api/v2/",
+)
+
+const Kk: React.FC = () => {
+  // @ts-ignore-next-line
+  return <button onClick={() => window.ketcher.getInchi().then(v => window.alert(v))}>asdasd</button>
+}
+
+const Ket: React.FC = () => {
+  const [ketcher, setKetcher] = React.useState<Ketcher>()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Kk />
+    <GraphContainer><Editor
+    onInit={k => {
+      // @ts-ignore-next-line
+      window.ketcher = k
+      window.parent.postMessage({
+        eventType: "init"
+      })
+    }}
+        staticResourcesUrl={"./"}
+        structServiceProvider={structServiceProvider}
+        errorHandler={function (message: string): void {
+          window.alert(message);
+        } }    />
+        </GraphContainer>
+        
+        </>
+  )
+}
+
+
+const App: React.FC = () => {
+  return (
+      <Ket />
   );
 }
 
