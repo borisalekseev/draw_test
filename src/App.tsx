@@ -4,7 +4,7 @@ import { Editor } from 'ketcher-react';
 import { GraphContainer } from './container';
 
 const structServiceProvider = new RemoteStructServiceProvider(
-  "http://localhost:8002/api/v2/",
+  process.env.REACT_APP_API_HOST || "http://localhost:8002/api/v2/",
 )
 
 const Kk: React.FC = () => {
@@ -23,7 +23,8 @@ const Ket: React.FC = () => {
       // @ts-ignore-next-line
       window.ketcher = k
       window.parent.postMessage({
-        eventType: "init"
+        eventType: "init",
+        ketcher: ketcher
       })
     }}
         staticResourcesUrl={"./"}
