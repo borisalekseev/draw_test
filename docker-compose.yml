@@ -9,6 +9,8 @@ services:
     build:
       context: .
       dockerfile: DOCKERFILE
+      args:
+        REACT_APP_API_HOST: "http://draw.engchem.ru:63212/api/v2/"
     ports:
       - "6380:80"
     depends_on:
