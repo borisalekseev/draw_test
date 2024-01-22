@@ -10,6 +10,6 @@ services:
       context: .
       dockerfile: DOCKERFILE
     ports:
-      - "6321:80"
+      - "6380:80"
     depends_on:
       - indigo
