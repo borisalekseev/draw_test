@@ -1,48 +1,26 @@
 import React from 'react';
-import { RemoteStructServiceProvider, Ketcher } from 'ketcher-core'
+import { RemoteStructServiceProvider } from 'ketcher-core'
 import { Editor } from 'ketcher-react';
-import { GraphContainer } from './container';
 
 const structServiceProvider = new RemoteStructServiceProvider(
   process.env.REACT_APP_API_HOST || "http://localhost:8002/api/v2/",
 )
 
-const Kk: React.FC = () => {
-  // @ts-ignore-next-line
-  return <button onClick={() => window.ketcher.getInchi().then(v => window.alert(v))}>asdasd</button>
-}
 
-const Ket: React.FC = () => {
-  const [ketcher, setKetcher] = React.useState<Ketcher>()
-
-  return (
-    <>
-    <Kk />
-    <GraphContainer><Editor
-    onInit={k => {
-      // @ts-ignore-next-line
-      window.ketcher = k
+const App: React.FC = () => {
+  return (<Editor
+    onInit={ketcher => {
       window.parent.postMessage({
+        targetOrigin: "https://db.dchem.ru",
         eventType: "init",
         ketcher: ketcher
       })
     }}
-        staticResourcesUrl={"./"}
-        structServiceProvider={structServiceProvider}
-        errorHandler={function (message: string): void {
-          window.alert(message);
-        } }    />
-        </GraphContainer>
-        
-        </>
-  )
-}
-
-
-const App: React.FC = () => {
-  return (
-      <Ket />
-  );
+      staticResourcesUrl={"./"}
+      structServiceProvider={structServiceProvider}
+      // @ts-ignore-next-line
+      errorHandler={(error) => window.alert(error)}    />
+)
 }
 
 export default App;
