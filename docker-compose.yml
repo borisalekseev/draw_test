@@ -12,8 +12,8 @@ services:
       args:
         REACT_APP_API_HOST: "https://draw.engchem.ru/api/v2/"
     volumes:
-      - /certs/server.crt:/home/ubuntu/certs/server.crt:ro
-      - /certs/server.key:/home/ubuntu/certs/server.key:ro
+      - /home/ubuntu/certs/server.crt:/certs/server.crt:ro
+      - /home/ubuntu/certs/server.key:/certs/server.key:ro
     ports:
       - "6380:80"
       - "63443:443"
