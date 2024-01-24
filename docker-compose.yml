@@ -11,6 +11,7 @@ services:
       dockerfile: DOCKERFILE
       args:
         REACT_APP_API_HOST: "https://draw.engchem.ru/api/v2/"
+        REACT_APP_TARGET_ORIGIN: "https://db.dchem.ru"
     volumes:
       - /home/ubuntu/certs/server.crt:/certs/server.crt:ro
       - /home/ubuntu/certs/server.key:/certs/server.key:ro
