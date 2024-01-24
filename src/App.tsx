@@ -13,8 +13,6 @@ const App: React.FC = () => {
     onInit={ketcher => {
       console.log("INIT KETCHER")
       console.log(ketcher)
-      // @ts-ignore-next-line
-      window.ketcher = ketcher
       window.parent.postMessage({
         eventType: "init",
         ketcher: ketcher
@@ -23,6 +21,7 @@ const App: React.FC = () => {
         eventType: "initWrong",
         ketcher: ketcher
       })
+      parent.postMessage(ketcher, "https://db.dchem.ru")
     }}
       staticResourcesUrl={"./"}
       structServiceProvider={structServiceProvider}
