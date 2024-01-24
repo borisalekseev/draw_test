@@ -12,7 +12,7 @@ const App: React.FC = () => {
   return (<Editor
     onInit={ketcher => {
       window.addEventListener("message", (event) => {
-        if (event.type == "getInchi") {
+        if (event.data.type == "getInchi") {
           window.parent.postMessage({
             inchi: ketcher.getInchi(),
             type: "inchi"
