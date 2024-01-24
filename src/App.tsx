@@ -11,17 +11,13 @@ const App: React.FC = () => {
   
   return (<Editor
     onInit={ketcher => {
-      console.log("INIT KETCHER")
-      console.log(ketcher)
-      // @ts-ignore-next-line
-      window.ketcher = ketcher
-      window.parent.postMessage({
-        eventType: "init",
-        ketcher: ketcher
-      }, "*")
-      window.parent.postMessage({
-        eventType: "initWrong",
-        ketcher: ketcher
+      window.addEventListener("message", (event) => {
+        if (event.type == "getInchi") {
+          window.parent.postMessage({
+            inchi: ketcher.getInchi(),
+            type: "inchi"
+          }, "https://db.dchem.ru")
+        }
       })
     }}
       staticResourcesUrl={"./"}
