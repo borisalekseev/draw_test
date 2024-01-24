@@ -8,13 +8,13 @@ const structServiceProvider = new RemoteStructServiceProvider(
 
 
 const App: React.FC = () => {
+  
   return (<Editor
     onInit={ketcher => {
       window.parent.postMessage({
-        targetOrigin: "https://db.dchem.ru",
         eventType: "init",
         ketcher: ketcher
-      })
+      }, "https://db.dchem.ru")
     }}
       staticResourcesUrl={"./"}
       structServiceProvider={structServiceProvider}
