@@ -12,6 +12,9 @@ const App: React.FC = () => {
   return (<Editor
     onInit={ketcher => {
       console.log("INIT KETCHER")
+      console.log(ketcher)
+      // @ts-ignore-next-line
+      window.parent.ketcher = ketcher
       window.parent.postMessage({
         eventType: "init",
         ketcher: ketcher
