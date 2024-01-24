@@ -16,12 +16,11 @@ const App: React.FC = () => {
       window.parent.postMessage({
         eventType: "init",
         ketcher: ketcher
-      }, "https://db.dchem.ru")
+      }, "*")
       window.parent.postMessage({
         eventType: "initWrong",
         ketcher: ketcher
       })
-      parent.postMessage(ketcher, "https://db.dchem.ru")
     }}
       staticResourcesUrl={"./"}
       structServiceProvider={structServiceProvider}
