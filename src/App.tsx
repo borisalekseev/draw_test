@@ -12,7 +12,7 @@ const App: React.FC = () => {
   
   return (<Editor
     onInit={ketcher => {
-      window.addEventListener("message", async (event: MessageEvent<{type: EventTypes, structure?: string}>) => {
+      window.addEventListener("message", async (event: MessageEvent<{type: EventTypes, structure?: string, status?: "ok" | "error"}>) => {
         if (event.data.type === "getInchi") {
           window.parent.postMessage(
             {inchi: await ketcher.getInchi(), type: "inchi"}, TARGET_ORIGIN
