@@ -1,0 +1,1 @@
+export const TARGET_ORIGIN = process.env.REACT_APP_TARGET_ORIGIN || "*"
